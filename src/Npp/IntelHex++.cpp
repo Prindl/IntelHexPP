@@ -181,7 +181,11 @@ void splitDocument(void) {
 		while (*end != ':' && *end != 0) {
 			end++; chars_this_split++;
 		}
-        if (end != NULL) end--;
+		//Exclude the next ':'
+		if (end != NULL) {
+			end--;
+			chars_this_split--;
+		}
 		splits[i] = new char[chars_this_split + 1 + num_lines*3/max_threads];
 		if (splits[i] != NULL) {
 			memcpy(splits[i], start, chars_this_split);
