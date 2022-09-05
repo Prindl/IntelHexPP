@@ -18,7 +18,7 @@ Supports enabling of uppercase/lowercase checksums.
 [Releases](./releases)
 
 ## Compiler
-Visual Studio 2019 Community
+Visual Studio 2022 Community
 
 ## License
 See [LICENSE](./LICENSE) file
