@@ -129,6 +129,8 @@ void splitDocument(void) {
     size_t num_lines = ::SendMessage(scintilla, SCI_GETLINECOUNT, NULL, NULL);
     size_t cursor_position = ::SendMessage(scintilla, SCI_GETCURRENTPOS, NULL, NULL);
     size_t error_code = ::SendMessage(scintilla, SCI_GETSTATUS, NULL, NULL);
+    // The number of extra characters for the full document (2 chars for the checksum)
+    size_t extra_chars = num_lines * 2;
     if (error_code != 0) {
         if (error_code < 1000) {
             if (error_code == 1)
@@ -139,7 +141,7 @@ void splitDocument(void) {
         }// else warning
     }
     char* text = NULL;
-    text = new char[num_chars];
+    text = new char[num_chars + extra_chars];
     ::SendMessage(scintilla, SCI_GETTEXT, num_chars, (LPARAM)text);
     if (text[0] == 0) {
         delete[] text;
@@ -193,7 +195,8 @@ void splitDocument(void) {
                 end = &text[num_chars - 1];
             }
             chars_this_split = end - start + 1;
-            char* split = new char[chars_this_split + 1];
+            // Add 25% extra chars per split for possible missing checksums
+            char* split = new char[size_t(chars_this_split*1.25) + 1];
             if (split != NULL) {
                 memcpy(split, start, chars_this_split);
                 split[chars_this_split] = 0;
@@ -236,7 +239,7 @@ void splitDocument(void) {
         }
         delete[] text;
         total_chars = 0;
-        text = (char*)calloc(num_chars + 2 * num_lines, 1);
+        text = (char*)calloc(num_chars + extra_chars, 1);
         for (size_t j = 0; j < partial_docs.size(); j++) {
             WaitForSingleObject(partial_docs[j]->thread, INFINITE);
             CloseHandle(partial_docs[j]->thread);
