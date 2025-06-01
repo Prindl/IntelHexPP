@@ -51,6 +51,7 @@ typedef struct {
 	size_t eol_mode;
 	size_t characters;
 	size_t part;
+	HANDLE thread;
 } DOCUMENT, *PDOCUMENT;
 
 const int nbFunc = 2; //How many plugin commands
