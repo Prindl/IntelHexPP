@@ -39,19 +39,19 @@ const TCHAR NPP_PLUGIN_SETTINGS_FILE_v7_6[] = TEXT("plugins\\IntelHex++.ini");
 typedef uint8_t(*int2hex)(const uint8_t& num); //Function pointer to integer to hex conversion (upper/lower)
 
 typedef struct {
-	bool lowerCase;
-	int2hex conversion_function;
+    bool lowerCase;
+    int2hex conversion_function;
 } SETTINGS;
 
 void loadSettings(void);
 void saveSettings(void);
 
 typedef struct {
-	char* text;
-	size_t eol_mode;
-	size_t characters;
-	size_t part;
-	HANDLE thread;
+    char* text;
+    size_t eol_mode;
+    size_t characters;
+    size_t part;
+    HANDLE thread;
 } DOCUMENT, *PDOCUMENT;
 
 const int nbFunc = 2; //How many plugin commands

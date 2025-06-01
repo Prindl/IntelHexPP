@@ -32,33 +32,33 @@
 
 namespace help {
 
-	namespace scintilla {
-		HWND getCurrentInstance(void);
-		void setUndoStart(HWND);
-		void setUndoEnd(HWND);
-		void setCursorWait(HWND);
-		void setCursorNormal(HWND);
-		void setUndoActionStart(HWND);
-		void setUndoActionEnd(HWND);
-	}
+    namespace scintilla {
+        HWND getCurrentInstance(void);
+        void setUndoStart(HWND);
+        void setUndoEnd(HWND);
+        void setCursorWait(HWND);
+        void setCursorNormal(HWND);
+        void setUndoActionStart(HWND);
+        void setUndoActionEnd(HWND);
+    }
 
-	namespace npp {
-		HWND getCurrentInstance(void);
-		void toggleMenuCheck(HWND, int, bool);
-	}
+    namespace npp {
+        HWND getCurrentInstance(void);
+        void toggleMenuCheck(HWND, int, bool);
+    }
 
-	namespace hex {
-		uint8_t hex2int(const unsigned char&);
-		uint8_t int2hex_lower(const uint8_t&);
-		uint8_t int2hex_upper(const uint8_t&);
-		uint8_t byte2hex(const char*);
-	}
+    namespace hex {
+        uint8_t hex2int(const unsigned char&);
+        uint8_t int2hex_lower(const uint8_t&);
+        uint8_t int2hex_upper(const uint8_t&);
+        uint8_t byte2hex(const char*);
+    }
 
-	namespace intelhex {
-		int16_t calculateChecksum(const char*, size_t);
-		int16_t readChecksum(const char*, size_t);
-		size_t calculateChecksumPosition(const char*);
-		bool isValidLine(const char*, size_t);
-	}
+    namespace intelhex {
+        int16_t calculateChecksum(const char*, size_t);
+        int16_t readChecksum(const char*, size_t);
+        size_t calculateChecksumPosition(const char*);
+        bool isValidLine(const char*, size_t);
+    }
 }
 #endif
